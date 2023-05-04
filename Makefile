@@ -1,7 +1,7 @@
 CC = gcc
 CFlags = -Werror -Wall -Werror 
 NAME = so_long
-MLX = -Lmlx -lmlx -framework OpenGL -framework AppKit
+MLX = mlx/build/libmlx42.a -Iinclude -lglfw -L"/Users/cdupuis/.brew/opt/glfw/lib/" -framework Cocoa -framework OpenGL -framework IOKit
 SRCS = main.c map.c hook.c
 OBJS = $(SRCS:c=o)
 

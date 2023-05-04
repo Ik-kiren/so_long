@@ -6,7 +6,7 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:48:10 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/01 14:59:41 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/04 15:10:33 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char **create_map(int fd, int *height, int *width)
 	return (map);
 }
 
-void map_to_img(t_vars *vars, t_map *map, t_img *tileset)
+void map_to_img(t_vars *vars, t_map *map, t_texture *tileset)
 {
 	int i = 0;
 	int j = 0;
@@ -73,17 +73,17 @@ void map_to_img(t_vars *vars, t_map *map, t_img *tileset)
 			if (map->tab_map[i][j] == '0' || map->tab_map[i][j] == 'P' || map->tab_map[i][j] == 'C')
 			{
 				printf("j = %d\n", j);
-				mlx_put_image_to_window(vars->mlx, vars->mlx_win, tileset->floor, j * 32, i * 32);
+				mlx_image_to_window(vars->mlx, vars->image->floor, j * 32, i * 32);
 			}
-			if (map->tab_map[i][j] == '1')
+			/*if (map->tab_map[i][j] == '1')
 			{
-				if (j == 0 && i == 0) mlx_put_image_to_window(vars->mlx, vars->mlx_win, tileset->corner_l_u, j * 32, i * 32);
-				else if (j == map->width && i == 0) mlx_put_image_to_window(vars->mlx, vars->mlx_win, tileset->corner_r_u, j * 32, i * 32);
-				else if (j == map->width && i == map->height) mlx_put_image_to_window(vars->mlx, vars->mlx_win, tileset->corner_r_d, j * 32, i * 32);
-				else if (j == 0 && i == map->height) mlx_put_image_to_window(vars->mlx, vars->mlx_win, tileset->corner_l_d, j * 32, i * 32);
-				else if (j == 0) mlx_put_image_to_window(vars->mlx, vars->mlx_win, tileset->wall_l, j * 32, i * 32);
-				else if (j == map->width) mlx_put_image_to_window(vars->mlx, vars->mlx_win, tileset->wall_r, j * 32, i * 32);
-				else mlx_put_image_to_window(vars->mlx, vars->mlx_win, tileset->wall, j * 32, i * 32);
+				if (j == 0 && i == 0) mlx_image_to_window(vars->mlx, vars->image->corner_l_u, j * 32, i * 32);
+				else if (j == map->width && i == 0) mlx_image_to_window(vars->mlx, vars->image->corner_r_u, j * 32, i * 32);
+				else if (j == map->width && i == map->height) mlx_image_to_window(vars->mlx, vars->image->corner_r_d, j * 32, i * 32);
+				else if (j == 0 && i == map->height) mlx_image_to_window(vars->mlx, vars->image->corner_l_d, j * 32, i * 32);
+				else if (j == 0) mlx_image_to_window(vars->mlx, vars->image->wall_l, j * 32, i * 32);
+				else if (j == map->width) mlx_image_to_window(vars->mlx, vars->image->wall_r, j * 32, i * 32);
+				else mlx_image_to_window(vars->mlx, vars->image->wall, j * 32, i * 32);
 			}
 			if (map->tab_map[i][j] == 'P')
 			{
@@ -92,8 +92,8 @@ void map_to_img(t_vars *vars, t_map *map, t_img *tileset)
 			}
 			if (map->tab_map[i][j] == 'C')
 			{
-				mlx_put_image_to_window(vars->mlx, vars->mlx_win, tileset->collec, j * 32, i * 32);
-			}
+				mlx_image_to_window(vars->mlx, vars->image->collec, j * 32, i * 32);
+			}*/
 			j++;
 		}
 		i++;

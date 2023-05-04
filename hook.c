@@ -6,7 +6,7 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:48:06 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/01 12:30:05 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/04 14:06:57 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void won_game(t_vars *vars)
 	if (vars->map->tab_map[vars->player_y / 32][vars->player_x / 32] == 'E' && vars->collectible == 1)
 	{
 		free(vars->map->tab_map);
-		mlx_destroy_window(vars->mlx, vars->mlx_win);
+		mlx_terminate(vars->mlx);
 	}
 }
 
-int deplacement(int keycode, t_vars *vars)
+/*int deplacement(int keycode, t_vars *vars)
 {
 	//wasd = 13,0,1,2
 	//U,L,D,R = 126,123,125,124
@@ -65,11 +65,10 @@ int deplacement(int keycode, t_vars *vars)
 	collec_drop(vars);
 	won_game(vars);
 	return (0);
-}
+}*/
 
-int close_window(int keycode, t_vars *vars)
+void close_window(mlx_key_data_t keycode, t_vars *vars)
 {
 	free(vars->map->tab_map);
-	mlx_destroy_window(vars->mlx, vars->mlx_win);
-	return (0);
+	mlx_terminate(vars->mlx);
 }
