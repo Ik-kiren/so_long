@@ -6,7 +6,7 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:48:30 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/04 15:33:11 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/05 12:23:25 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ typedef struct s_img
 {
 	mlx_image_t		*player;
 	mlx_image_t		*floor;
-	mlx_image_t		*wall;
+	mlx_image_t		*wall_d;
+	mlx_image_t		*wall_u;
 	mlx_image_t		*wall_l;
 	mlx_image_t		*wall_r;
 	mlx_image_t		*corner_l_u;
@@ -43,7 +44,8 @@ typedef struct s_texture
 {
 	mlx_texture_t	*t_player;
 	mlx_texture_t	*t_floor;
-	mlx_texture_t	*t_wall;
+	mlx_texture_t	*t_wall_u;
+	mlx_texture_t	*t_wall_d;
 	mlx_texture_t	*t_wall_l;
 	mlx_texture_t	*t_wall_r;
 	mlx_texture_t	*t_corner_l_u;
@@ -57,7 +59,6 @@ typedef struct s_texture
 typedef struct s_vars
 {
 	void	*mlx;
-	void	*mlx_win;
 	void	*image_addr;
 	int		player_x;
 	int		player_y;
@@ -71,7 +72,7 @@ typedef struct s_vars
 
 void		map_to_img(t_vars *vars, t_map *map, t_texture *tileset);
 char		**create_map(int fd, int *height, int *width);
-int			deplacement(int keycode, t_vars *vars);
+void		deplacement(mlx_key_data_t keycode, t_vars *vars);
 void		close_window(mlx_key_data_t keycode, t_vars *vars);
 
 #endif
