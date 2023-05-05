@@ -6,7 +6,7 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:48:30 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/05 12:23:25 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/05 14:50:09 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,13 @@ typedef struct s_vars
 	int		image_width;
 	int		image_height;
 	int		collectible;
-	t_texture	*tileset;
-	t_img		*image;
+	t_texture	*img_t;
+	t_img		*img;
 	t_map	*map;
 }				t_vars;
 
 void		map_to_img(t_vars *vars, t_map *map, t_texture *tileset);
 char		**create_map(int fd, int *height, int *width);
 void		deplacement(mlx_key_data_t keycode, t_vars *vars);
-void		close_window(mlx_key_data_t keycode, t_vars *vars);
 
 #endif

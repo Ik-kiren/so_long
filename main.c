@@ -6,52 +6,52 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:47:51 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/05 14:21:57 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/05 14:50:11 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	set_texture(t_vars *vars, t_texture *tileset)
+void	set_texture(t_vars *vars, t_texture *img_t)
 {
-	tileset->t_player = mlx_load_png("./player.png");
-	tileset->t_floor = mlx_load_png("./floor.png");
-	tileset->t_wall_u = mlx_load_png("./wall_up.png");
-	tileset->t_wall_d = mlx_load_png("./wall_down.png");
-	tileset->t_wall_l = mlx_load_png("./wall_left.png");
-	tileset->t_wall_r = mlx_load_png("./wall_right.png");
-	tileset->t_corner_l_u = mlx_load_png("./corner_l_u.png");
-	tileset->t_corner_l_d = mlx_load_png("./corner_l_d.png");
-	tileset->t_corner_r_d = mlx_load_png("./corner_r_d.png");
-	tileset->t_corner_r_u = mlx_load_png("./corner_r_u.png");
-	tileset->t_collec = mlx_load_png("./collec.png");
+	img_t->t_player = mlx_load_png("./player.png");
+	img_t->t_floor = mlx_load_png("./floor.png");
+	img_t->t_wall_u = mlx_load_png("./wall_up.png");
+	img_t->t_wall_d = mlx_load_png("./wall_down.png");
+	img_t->t_wall_l = mlx_load_png("./wall_left.png");
+	img_t->t_wall_r = mlx_load_png("./wall_right.png");
+	img_t->t_corner_l_u = mlx_load_png("./corner_l_u.png");
+	img_t->t_corner_l_d = mlx_load_png("./corner_l_d.png");
+	img_t->t_corner_r_d = mlx_load_png("./corner_r_d.png");
+	img_t->t_corner_r_u = mlx_load_png("./corner_r_u.png");
+	img_t->t_collec = mlx_load_png("./collec.png");
 }
 
-void	set_image(t_vars *vars, t_img *image, t_texture *tileset)
+void	set_img(t_vars *vars, t_img *img, t_texture *img_t)
 {
-	image->player = mlx_texture_to_image(vars->mlx, tileset->t_player);
-	image->floor = mlx_texture_to_image(vars->mlx, tileset->t_floor);
-	image->wall_d = mlx_texture_to_image(vars->mlx, tileset->t_wall_d);
-	image->wall_u = mlx_texture_to_image(vars->mlx, tileset->t_wall_u);
-	image->wall_l = mlx_texture_to_image(vars->mlx, tileset->t_wall_l);
-	image->wall_r = mlx_texture_to_image(vars->mlx, tileset->t_wall_r);
-	image->corner_l_u = mlx_texture_to_image(vars->mlx, tileset->t_corner_l_u);
-	image->corner_l_d = mlx_texture_to_image(vars->mlx, tileset->t_corner_l_d);
-	image->corner_r_d = mlx_texture_to_image(vars->mlx, tileset->t_corner_r_d);
-	image->corner_r_u = mlx_texture_to_image(vars->mlx, tileset->t_corner_r_u);
-	image->collec = mlx_texture_to_image(vars->mlx, tileset->t_collec);
+	img->player = mlx_texture_to_img(vars->mlx, img_t->t_player);
+	img->floor = mlx_texture_to_img(vars->mlx, img_t->t_floor);
+	img->wall_d = mlx_texture_to_img(vars->mlx, img_t->t_wall_d);
+	img->wall_u = mlx_texture_to_img(vars->mlx, img_t->t_wall_u);
+	img->wall_l = mlx_texture_to_img(vars->mlx, img_t->t_wall_l);
+	img->wall_r = mlx_texture_to_img(vars->mlx, img_t->t_wall_r);
+	img->corner_l_u = mlx_texture_to_img(vars->mlx, img_t->t_corner_l_u);
+	img->corner_l_d = mlx_texture_to_img(vars->mlx, img_t->t_corner_l_d);
+	img->corner_r_d = mlx_texture_to_img(vars->mlx, img_t->t_corner_r_d);
+	img->corner_r_u = mlx_texture_to_img(vars->mlx, img_t->t_corner_r_u);
+	img->collec = mlx_texture_to_img(vars->mlx, img_t->t_collec);
 }
 
 int	main(void)
 {
 	t_vars		vars;
 	t_map		map;
-	t_texture	tileset;
-	t_img		image;
+	t_texture	img_t;
+	t_img		img;
 	int			fd;
 
-	vars.tileset = &tileset;
-	vars.image = &image;
+	vars.img_t = &img_t;
+	vars.img = &img;
 	vars.map = &map;
 	fd = open("./map.ber", O_RDONLY);
 	if(!fd)
@@ -68,10 +68,10 @@ int	main(void)
 		return(0);
 	}
 	vars.mlx = mlx_init((map.width + 1) * 32, (map.height + 1) * 32, "hello word", true);
-	set_texture(&vars, &tileset);
-	set_image(&vars, &image, &tileset);
+	set_texture(&vars, &img_t);
+	set_img(&vars, &img, &img_t);
 	mlx_key_hook(vars.mlx, &deplacement, &vars);
-	map_to_img(&vars, &map, &tileset);
-	mlx_image_to_window(vars.mlx, image.player, vars.player_x, vars.player_y);
+	map_to_img(&vars, &map, &img_t);
+	mlx_img_to_window(vars.mlx, img.player, vars.player_x, vars.player_y);
 	mlx_loop(vars.mlx);
 }
