@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-void	set_texture(t_vars *vars, t_texture *img_t)
+void	set_texture(t_texture *img_t)
 {
 	img_t->t_player = mlx_load_png("./player.png");
 	img_t->t_floor = mlx_load_png("./floor.png");
@@ -29,17 +29,17 @@ void	set_texture(t_vars *vars, t_texture *img_t)
 
 void	set_img(t_vars *vars, t_img *img, t_texture *img_t)
 {
-	img->player = mlx_texture_to_img(vars->mlx, img_t->t_player);
-	img->floor = mlx_texture_to_img(vars->mlx, img_t->t_floor);
-	img->wall_d = mlx_texture_to_img(vars->mlx, img_t->t_wall_d);
-	img->wall_u = mlx_texture_to_img(vars->mlx, img_t->t_wall_u);
-	img->wall_l = mlx_texture_to_img(vars->mlx, img_t->t_wall_l);
-	img->wall_r = mlx_texture_to_img(vars->mlx, img_t->t_wall_r);
-	img->corner_l_u = mlx_texture_to_img(vars->mlx, img_t->t_corner_l_u);
-	img->corner_l_d = mlx_texture_to_img(vars->mlx, img_t->t_corner_l_d);
-	img->corner_r_d = mlx_texture_to_img(vars->mlx, img_t->t_corner_r_d);
-	img->corner_r_u = mlx_texture_to_img(vars->mlx, img_t->t_corner_r_u);
-	img->collec = mlx_texture_to_img(vars->mlx, img_t->t_collec);
+	img->player = mlx_texture_to_image(vars->mlx, img_t->t_player);
+	img->floor = mlx_texture_to_image(vars->mlx, img_t->t_floor);
+	img->wall_d = mlx_texture_to_image(vars->mlx, img_t->t_wall_d);
+	img->wall_u = mlx_texture_to_image(vars->mlx, img_t->t_wall_u);
+	img->wall_l = mlx_texture_to_image(vars->mlx, img_t->t_wall_l);
+	img->wall_r = mlx_texture_to_image(vars->mlx, img_t->t_wall_r);
+	img->corner_l_u = mlx_texture_to_image(vars->mlx, img_t->t_corner_l_u);
+	img->corner_l_d = mlx_texture_to_image(vars->mlx, img_t->t_corner_l_d);
+	img->corner_r_d = mlx_texture_to_image(vars->mlx, img_t->t_corner_r_d);
+	img->corner_r_u = mlx_texture_to_image(vars->mlx, img_t->t_corner_r_u);
+	img->collec = mlx_texture_to_image(vars->mlx, img_t->t_collec);
 }
 
 int	main(void)
@@ -68,10 +68,11 @@ int	main(void)
 		return(0);
 	}
 	vars.mlx = mlx_init((map.width + 1) * 32, (map.height + 1) * 32, "hello word", true);
-	set_texture(&vars, &img_t);
+	set_texture(&img_t);
 	set_img(&vars, &img, &img_t);
 	mlx_key_hook(vars.mlx, &deplacement, &vars);
-	map_to_img(&vars, &map, &img_t);
-	mlx_img_to_window(vars.mlx, img.player, vars.player_x, vars.player_y);
+	map_to_img(&vars, &map);
+	mlx_image_to_window(vars.mlx, img.player, vars.player_x, vars.player_y);
 	mlx_loop(vars.mlx);
+	mlx_terminate(vars.mlx);
 }

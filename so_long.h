@@ -67,11 +67,11 @@ typedef struct s_vars
 	int		collectible;
 	t_texture	*img_t;
 	t_img		*img;
-	t_map	*map;
+	t_map		*map;
 }				t_vars;
 
-void		map_to_img(t_vars *vars, t_map *map, t_texture *tileset);
+void		map_to_img(t_vars *vars, t_map *map);
 char		**create_map(int fd, int *height, int *width);
-void		deplacement(mlx_key_data_t keycode, t_vars *vars);
+void		deplacement(mlx_key_data_t keycode, void *param);
 
 #endif
