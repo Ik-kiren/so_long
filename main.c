@@ -6,7 +6,7 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:47:51 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/05 14:50:11 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/08 13:32:01 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	set_texture(t_texture *img_t)
 	img_t->t_corner_r_d = mlx_load_png("./corner_r_d.png");
 	img_t->t_corner_r_u = mlx_load_png("./corner_r_u.png");
 	img_t->t_collec = mlx_load_png("./collec.png");
+	img_t->t_exit = mlx_load_png("./exit.png");
 }
 
 void	set_img(t_vars *vars, t_img *img, t_texture *img_t)
@@ -40,6 +41,14 @@ void	set_img(t_vars *vars, t_img *img, t_texture *img_t)
 	img->corner_r_d = mlx_texture_to_image(vars->mlx, img_t->t_corner_r_d);
 	img->corner_r_u = mlx_texture_to_image(vars->mlx, img_t->t_corner_r_u);
 	img->collec = mlx_texture_to_image(vars->mlx, img_t->t_collec);
+	img->exit = mlx_texture_to_image(vars->mlx, img_t->t_exit);
+}
+
+void	format_error(t_vars *vars, t_map *map)
+{
+	printf("format error\n");
+	free(map->tab_map);
+	mlx_close_window(vars->mlx);
 }
 
 int	main(void)
@@ -54,25 +63,17 @@ int	main(void)
 	vars.img = &img;
 	vars.map = &map;
 	fd = open("./map.ber", O_RDONLY);
-	if(!fd)
-	{
-		printf("fd error\n");
-		return(0);
-	}
+	if (!fd)
+		return (0);
 	map.tab_map = create_map(fd, &map.height, &map.width);
 	if (map.tab_map == NULL)
-	{
-		printf("format error\n");
-		free(map.tab_map);
-		mlx_terminate(vars.mlx);
-		return(0);
-	}
-	vars.mlx = mlx_init((map.width + 1) * 32, (map.height + 1) * 32, "hello word", true);
+		format_error(&vars, &map);
+	vars.mlx = mlx_init((map.width + 1) * 32, (map.height + 1) * 32, "s", true);
 	set_texture(&img_t);
 	set_img(&vars, &img, &img_t);
 	mlx_key_hook(vars.mlx, &deplacement, &vars);
 	map_to_img(&vars, &map);
-	mlx_image_to_window(vars.mlx, img.player, vars.player_x, vars.player_y);
+	mlx_image_to_window(vars.mlx, img.player, vars.p_x, vars.p_y);
 	mlx_loop(vars.mlx);
 	mlx_terminate(vars.mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:48:30 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/05 14:50:09 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/08 13:31:27 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_img
 	mlx_image_t		*corner_r_d;
 	mlx_image_t		*corner_r_u;
 	mlx_image_t		*collec;
+	mlx_image_t		*exit;
 }				t_img;
 
 typedef struct s_texture
@@ -53,18 +54,18 @@ typedef struct s_texture
 	mlx_texture_t	*t_corner_r_d;
 	mlx_texture_t	*t_corner_r_u;
 	mlx_texture_t	*t_collec;
+	mlx_texture_t	*t_exit;
 }				t_texture;
-
 
 typedef struct s_vars
 {
-	void	*mlx;
-	void	*image_addr;
-	int		player_x;
-	int		player_y;
-	int		image_width;
-	int		image_height;
-	int		collectible;
+	void		*mlx;
+	void		*image_addr;
+	int			p_x;
+	int			p_y;
+	int			image_width;
+	int			image_height;
+	int			collectible;
 	t_texture	*img_t;
 	t_img		*img;
 	t_map		*map;
@@ -73,5 +74,6 @@ typedef struct s_vars
 void		map_to_img(t_vars *vars, t_map *map);
 char		**create_map(int fd, int *height, int *width);
 void		deplacement(mlx_key_data_t keycode, void *param);
+int			map_verif(char **map, int *height, int *width);
 
 #endif
