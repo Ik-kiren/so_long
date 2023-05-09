@@ -6,15 +6,14 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:48:10 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/08 13:32:52 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/09 14:32:01 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**create_map(int fd, int *height, int *width)
+void	create_map(int fd, t_map *map)
 {
-	char	**map;
 	int		i;
 	int		j;
 
@@ -22,22 +21,23 @@ char	**create_map(int fd, int *height, int *width)
 	j = 0;
 	while (get_next_line(fd))
 		i++;
-	*height = i - 1;
+	map->height = i - 1;
 	close(fd);
 	fd = open("./map.ber", O_RDONLY);
-	map = malloc(sizeof(char *) * i + 1);
+	map->tab_map = malloc(sizeof(char *) * i + 1);
 	while (i > 0)
 	{
-		map[j] = ft_strdup(get_next_line(fd));
-		printf("%s\n", map[j]);
+		map->tab_map[j] = ft_strdup(get_next_line(fd));
+		printf("%s\n", map->tab_map[j]);
 		j++;
 		i--;
 	}
-	map[j] = NULL;
-	if (map_verif(map, height, width) == 0)
-		return (NULL);
-	close(fd);
-	return (map);
+	map->tab_map[j] = NULL;
+	if (map_checks(map) == 0)
+	{
+		map->tab_map = NULL;
+		close(fd);
+	}
 }
 
 void	walls_img(t_vars *vars, t_map *map, int i, int j)

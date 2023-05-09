@@ -6,7 +6,7 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:48:30 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/08 13:31:27 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/09 13:09:24 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,16 @@ typedef struct s_vars
 	t_map		*map;
 }				t_vars;
 
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}				t_point;
+
 void		map_to_img(t_vars *vars, t_map *map);
-char		**create_map(int fd, int *height, int *width);
+void		create_map(int fd, t_map *map);
 void		deplacement(mlx_key_data_t keycode, void *param);
-int			map_verif(char **map, int *height, int *width);
+int			map_checks(t_map *map);
+int			path_verif(t_map *map, t_point start, t_point end, t_point col);
 
 #endif
