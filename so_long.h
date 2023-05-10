@@ -82,5 +82,6 @@ void		create_map(int fd, t_map *map);
 void		deplacement(mlx_key_data_t keycode, void *param);
 int			map_checks(t_map *map);
 int			path_verif(t_map *map, t_point start, t_point end, t_point col);
+void		free_map(t_map *map);
 
 #endif

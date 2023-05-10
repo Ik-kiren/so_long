@@ -1,5 +1,5 @@
 CC = gcc
-CFlags = -Werror -Wall -Wextra
+CFlags = -Werror -Wall -Wextra #-g --sanitize=address
 NAME = so_long
 MLX = mlx/build/libmlx42.a -Iinclude -lglfw -L"/Users/cdupuis/.brew/opt/glfw/lib/" -framework Cocoa -framework OpenGL -framework IOKit
 SRCS = main.c map.c hook.c map_verif.c path_verif.c

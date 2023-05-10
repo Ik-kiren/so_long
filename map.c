@@ -24,7 +24,7 @@ void	create_map(int fd, t_map *map)
 	map->height = i - 1;
 	close(fd);
 	fd = open("./map.ber", O_RDONLY);
-	map->tab_map = malloc(sizeof(char *) * i + 1);
+	map->tab_map = malloc(sizeof(char *) * (i + 2));
 	while (i > 0)
 	{
 		map->tab_map[j] = ft_strdup(get_next_line(fd));
@@ -35,6 +35,7 @@ void	create_map(int fd, t_map *map)
 	map->tab_map[j] = NULL;
 	if (map_checks(map) == 0)
 	{
+		free_map(map);
 		map->tab_map = NULL;
 		close(fd);
 	}

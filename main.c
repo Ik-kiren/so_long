@@ -44,23 +44,21 @@ void	set_img(t_vars *vars, t_img *img, t_texture *img_t)
 	img->exit = mlx_texture_to_image(vars->mlx, img_t->t_exit);
 }
 
-int	format_error(t_vars *vars, t_map *map)
-{
-	printf("format error\n");
-	free(map->tab_map);
-	mlx_close_window(vars->mlx);
-	return (0);
-}
-
 void	free_map(t_map *map)
 {
 	int	i;
 
 	i = -1;
-	while (++i <= map->height)
+	while (++i <= map->height + 1)
 		free(map->tab_map[i]);
+	free(map->tab_map);
 }
 
+int	format_error()
+{
+	printf("format error\n");
+	return (0);
+}
 
 int	main(void)
 {
@@ -78,7 +76,10 @@ int	main(void)
 		return (0);
 	create_map(fd, &map);
 	if (!map.tab_map)
-		return (format_error(&vars, &map));
+	{
+		format_error(&vars);
+		return (0);
+	}
 	vars.mlx = mlx_init((map.width + 1) * 32, (map.height + 1) * 32, "s", true);
 	set_texture(&img_t);
 	set_img(&vars, &img, &img_t);
@@ -86,6 +87,5 @@ int	main(void)
 	map_to_img(&vars, &map);
 	mlx_image_to_window(vars.mlx, img.player, vars.p_x, vars.p_y);
 	mlx_loop(vars.mlx);
-	//free_map(&map);
 	mlx_terminate(vars.mlx);
 }
