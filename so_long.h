@@ -6,7 +6,7 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:48:30 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/09 13:09:24 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/11 12:54:09 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "mlx/include/MLX42/MLX42.h"
 # include <stdio.h>
 # include <fcntl.h>
+# include "ft_printf/ft_printf.h"
 # include "gnl/get_next_line.h"
 
 typedef struct s_map
@@ -69,6 +70,7 @@ typedef struct s_vars
 	t_texture	*img_t;
 	t_img		*img;
 	t_map		*map;
+	int			dplcmt;
 }				t_vars;
 
 typedef struct s_point
@@ -83,5 +85,6 @@ void		deplacement(mlx_key_data_t keycode, void *param);
 int			map_checks(t_map *map);
 int			path_verif(t_map *map, t_point start, t_point end, t_point col);
 void		free_map(t_map *map);
+void		set_structs(t_vars *vars, t_img *img, t_texture *img_t);
 
 #endif

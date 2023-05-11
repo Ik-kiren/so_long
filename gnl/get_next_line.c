@@ -6,7 +6,7 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 12:14:53 by cdupuis           #+#    #+#             */
-/*   Updated: 2022/12/09 13:09:14 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/11 12:15:28 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*read_lines(int fd, char *line)
 	if (!buff)
 		return (NULL);
 	reading = 1;
-	while (reading != 0 && ft_strchr(line, '\n') == 0)
+	while (reading != 0 && ft_strchr_gnl(line, '\n') == 0)
 	{
 		reading = read(fd, buff, BUFFER_SIZE);
 		if (reading == -1)
@@ -61,7 +61,7 @@ char	*read_lines(int fd, char *line)
 		if (reading != 0)
 		{
 			buff[reading] = '\0';
-			line = ft_strjoin(line, buff);
+			line = ft_strjoin_gnl(line, buff);
 		}
 	}
 	free(buff);
@@ -74,9 +74,9 @@ char	*erase_line(char *line)
 
 	if (!line)
 		return (NULL);
-	if (ft_strchr(line, '\n') != NULL)
+	if (ft_strchr_gnl(line, '\n') != NULL)
 	{
-		tmp = ft_strdup(ft_strchr(line, '\n') + 1);
+		tmp = ft_strdup_gnl(ft_strchr_gnl(line, '\n') + 1);
 	}
 	else
 	{

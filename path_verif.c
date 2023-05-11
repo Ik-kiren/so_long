@@ -6,7 +6,7 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:08:42 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/09 15:04:21 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/11 12:19:53 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	path_verif(t_map *map, t_point start, t_point end, t_point col)
 	if (!tmp_map)
 		return (0);
 	while (++i <= map->height)
-		tmp_map[i] = ft_strdup(map->tab_map[i]);
+		tmp_map[i] = ft_strdup_gnl(map->tab_map[i]);
 	start = find_in_map(map, 'P');
 	end = find_in_map(map, 'E');
 	col = find_in_map(map, 'C');

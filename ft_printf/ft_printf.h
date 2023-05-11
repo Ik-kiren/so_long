@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/17 15:17:02 by cdupuis           #+#    #+#             */
-/*   Updated: 2022/11/25 11:41:38 by cdupuis          ###   ########.fr       */
+/*   Created: 2022/12/15 11:16:38 by cdupuis           #+#    #+#             */
+/*   Updated: 2022/12/15 11:29:11 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-char	*ft_strdup(const char *source)
-{
-	int		i;
-	char	*str;
+# include <stdarg.h>
+# include <unistd.h>
 
-	i = 0;
-	str = malloc(sizeof(char) * ft_strlen(source) + 1);
-	if (!str)
-		return (NULL);
-	while (source[i] != '\0')
-	{
-		str[i] = source[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
-}
+int	ft_putchar(int c);
+int	ft_putstr(char *str);
+int	ft_putnbr(int d);
+int	ft_putunsnbr(unsigned int d);
+int	ft_puthexa(unsigned int d);
+int	ft_puthexa_m(unsigned int d);
+int	ft_putptr(unsigned long long d);
+int	ft_printf(const char *str, ...);
+
+#endif

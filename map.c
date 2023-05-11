@@ -6,11 +6,26 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:48:10 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/09 14:32:01 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/11 12:06:01 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	map_height(int fd, t_map *map)
+{
+	int		i;
+	char	*line;
+
+	line = get_next_line(fd);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+		i++;
+	}
+	return (i);
+}
 
 void	create_map(int fd, t_map *map)
 {
@@ -19,15 +34,14 @@ void	create_map(int fd, t_map *map)
 
 	i = 0;
 	j = 0;
-	while (get_next_line(fd))
-		i++;
+	i = map_height(fd, map);
 	map->height = i - 1;
 	close(fd);
 	fd = open("./map.ber", O_RDONLY);
 	map->tab_map = malloc(sizeof(char *) * (i + 2));
 	while (i > 0)
 	{
-		map->tab_map[j] = ft_strdup(get_next_line(fd));
+		map->tab_map[j] = get_next_line(fd);
 		printf("%s\n", map->tab_map[j]);
 		j++;
 		i--;

@@ -6,7 +6,7 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:09:02 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/09 13:11:25 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/11 12:20:18 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	wall_verif(char **map, int *height, int i, int j)
 {
 	int	width;
 
-	width = ft_strlen(map[0]) - 2;
+	width = ft_strlen_gnl(map[0]) - 2;
 	if (i == 0 && map[i][j] != '1' && map[i][j] != '\0')
 		return (0);
 	else if (j == 0 && map[i][j] != '1')
@@ -39,7 +39,7 @@ int	map_verif(char **map, int *height, int *width)
 
 	i = 0;
 	pce = 0;
-	*width = ft_strlen(map[0]) - 2;
+	*width = ft_strlen_gnl(map[0]) - 2;
 	while (i <= *height)
 	{
 		j = 0;
@@ -53,7 +53,6 @@ int	map_verif(char **map, int *height, int *width)
 		}
 		i++;
 	}
-	printf("pce = %d\n", pce);
 	if (pce != 3)
 		return (0);
 	return (1);

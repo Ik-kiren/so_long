@@ -6,7 +6,7 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:48:06 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/09 12:52:16 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/11 12:36:39 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	won_game(t_vars *vars)
 
 void	img_deplacement(t_vars *vars)
 {
+	vars->dplcmt += 1;
+	ft_printf("deplacements = %d\n", vars->dplcmt);
 	mlx_image_to_window(vars->mlx, vars->img->floor, vars->p_x, vars->p_y);
 	if (vars->map->tab_map[vars->p_y / 32][vars->p_x / 32] == 'E')
 		mlx_image_to_window(vars->mlx, vars->img->exit, vars->p_x, vars->p_y);
