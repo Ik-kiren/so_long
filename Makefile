@@ -2,7 +2,7 @@ CC = gcc
 CFlags = -Werror -Wall -Wextra #-g --sanitize=address
 NAME = so_long
 MLX = mlx/build/libmlx42.a -Iinclude -lglfw -L"/Users/cdupuis/.brew/opt/glfw/lib/" -framework Cocoa -framework OpenGL -framework IOKit
-SRCS = main.c map.c hook.c map_verif.c path_verif.c structs.c gnl/get_next_line.c gnl/get_next_line_utils.c
+SRCS = main.c map.c hook.c map_verif.c path_verif.c structs.c col_list.c gnl/get_next_line.c gnl/get_next_line_utils.c
 OBJS = $(SRCS:c=o)
 
 all: $(NAME)

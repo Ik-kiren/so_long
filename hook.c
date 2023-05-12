@@ -6,7 +6,7 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:48:06 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/11 12:36:39 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/12 12:25:28 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@ void	collec_drop(t_vars *vars)
 {
 	if (vars->map->tab_map[vars->p_y / 32][vars->p_x / 32] == 'C')
 	{
-		vars->collectible = 1;
+		vars->collectible += 1;
+		vars->map->tab_map[vars->p_y / 32][vars->p_x / 32] = '0';
 	}
 }
 
 void	won_game(t_vars *vars)
 {
 	if (vars->map->tab_map[vars->p_y / 32][vars->p_x / 32] == 'E'
-		&& vars->collectible == 1)
+		&& vars->collectible == vars->map->cols)
 	{
 		free(vars->map->tab_map);
 		mlx_close_window(vars->mlx);

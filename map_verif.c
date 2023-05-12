@@ -6,7 +6,7 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:09:02 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/11 12:20:18 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/12 11:39:57 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ int	map_verif(char **map, int *height, int *width)
 		{
 			if (wall_verif(map, height, i, j) == 0)
 				return (0);
-			if (map[i][j] == 'P' || map[i][j] == 'C' || map[i][j] == 'E')
+			if (map[i][j] == 'P' || map[i][j] == 'E')
 				pce += 1;
 			j++;
 		}
 		i++;
 	}
-	if (pce != 3)
+	if (pce != 2)
 		return (0);
 	return (1);
 }
@@ -62,10 +62,9 @@ int	map_checks(t_map *map)
 {
 	t_point	start;
 	t_point	end;
-	t_point	col;
 
 	if (map_verif(map->tab_map, &map->height, &map->width) == 0
-		|| path_verif(map, start, end, col) == 0)
+		|| path_verif(map, start, end) == 0)
 		return (0);
 	return (1);
 }

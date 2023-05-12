@@ -6,7 +6,7 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:08:42 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/11 12:19:53 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/12 11:40:17 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,36 @@ t_point	find_in_map(t_map *map, char c)
 	return (point);
 }
 
+t_point	find_in_map_c(t_map *map, char c)
+{
+	int		i;
+	int		j;
+	t_point	point;
+
+	i = 0;
+	while (i < map->height)
+	{
+		j = 0;
+		while (map->tab_map[i][j])
+		{
+			if (map->tab_map[i][j] == c)
+			{
+				point.x = j;
+				point.y = i;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (point);
+}
+
 void	flood_fill(char **map, t_point size, t_point begin)
 {
 	fill(map, size, begin, map[begin.y][begin.x]);
 }
 
-int	path_verif(t_map *map, t_point start, t_point end, t_point col)
+int	path_verif(t_map *map, t_point start, t_point end)
 {
 	char	**tmp_map;
 	int		i;
@@ -69,9 +93,9 @@ int	path_verif(t_map *map, t_point start, t_point end, t_point col)
 		tmp_map[i] = ft_strdup_gnl(map->tab_map[i]);
 	start = find_in_map(map, 'P');
 	end = find_in_map(map, 'E');
-	col = find_in_map(map, 'C');
 	flood_fill(tmp_map, (t_point){map->width, map->height}, start);
-	valid = (tmp_map[end.y][end.x] == 'F' && tmp_map[col.y][col.x] == 'F');
+	valid = (tmp_map[end.y][end.x] == 'F');
+	valid = col_path(tmp_map, map);
 	i = -1;
 	while (++i <= map->height)
 		free(tmp_map[i]);

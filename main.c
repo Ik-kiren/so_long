@@ -6,7 +6,7 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:47:51 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/11 12:35:27 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/12 12:41:33 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,3 +53,4 @@ int	main(void)
 	mlx_loop(vars.mlx);
 	mlx_terminate(vars.mlx);
 }
+
