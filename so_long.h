@@ -6,7 +6,7 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:48:30 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/12 12:27:27 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/16 13:38:58 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define SO_LONG_H
 
 # include "mlx/include/MLX42/MLX42.h"
-# include <stdio.h>
 # include <fcntl.h>
 # include "ft_printf/ft_printf.h"
 # include "gnl/get_next_line.h"
@@ -88,7 +87,7 @@ typedef struct s_col_point
 }				t_col_point;
 
 void		map_to_img(t_vars *vars, t_map *map);
-void		create_map(int fd, t_map *map);
+void		create_map(int fd, t_map *map, char *argv);
 void		deplacement(mlx_key_data_t keycode, void *param);
 int			map_checks(t_map *map);
 int			path_verif(t_map *map, t_point start, t_point end);

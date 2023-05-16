@@ -6,7 +6,7 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 13:01:22 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/12 12:27:08 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/16 11:52:38 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,20 +68,20 @@ int	col_path(char **tmp_map, t_map *map)
 	t_col_point	*list;
 	int			validate;
 	int			col_nbr;
+	void		*next;
 
 	list = malloc(sizeof(t_col_point));
 	validate = 0;
 	col_nbr = search_c(tmp_map, list, map);
 	while (list != NULL)
 	{
-		ft_printf("p = %p\n", list);
-		ft_printf("p = %p\n", list->next);
 		if (tmp_map[list->y][list->x] == 'F')
 		{
 			validate++;
 		}
+		next = list->next;
 		free(list);
-		list = list->next;
+		list = next;
 	}
 	if (col_nbr == validate)
 		return (1);

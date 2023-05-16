@@ -10,11 +10,21 @@ all: $(NAME)
 linux:
 	$(CC) $(CFlags) $(SRCS) gnl/get_next_line.c gnl/get_next_line_utils.c mlx/build/libmlx42.a  -Iinclude -ldl -lglfw -pthread -lm -o $(NAME)
 
+%.o: %.c
+	$(CC) $(CFlags) $< -c
+
 $(NAME): $(OBJS)
+	cmake ./mlx -B ./mlx/build
+	cmake --build ./mlx/build -j4
 	make -C ft_printf
 	$(CC) $(CFlags) $(OBJS) $(MLX) ft_printf/libftprintf.a -o $(NAME)
 
 clean:
 	rm so_long
 
-.PHONY : all linux
+fclean: clean
+	rm *.o
+
+re: fclean all
+
+.PHONY : all linux clean fclean re

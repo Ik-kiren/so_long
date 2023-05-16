@@ -6,17 +6,18 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:48:10 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/11 12:06:01 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/16 13:39:10 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	map_height(int fd, t_map *map)
+int	map_height(int fd)
 {
 	int		i;
 	char	*line;
 
+	i = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -27,22 +28,21 @@ int	map_height(int fd, t_map *map)
 	return (i);
 }
 
-void	create_map(int fd, t_map *map)
+void	create_map(int fd, t_map *map, char *argv)
 {
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	i = map_height(fd, map);
+	i = map_height(fd);
 	map->height = i - 1;
 	close(fd);
-	fd = open("./map.ber", O_RDONLY);
+	fd = open(argv, O_RDONLY);
 	map->tab_map = malloc(sizeof(char *) * (i + 2));
 	while (i > 0)
 	{
 		map->tab_map[j] = get_next_line(fd);
-		printf("%s\n", map->tab_map[j]);
 		j++;
 		i--;
 	}

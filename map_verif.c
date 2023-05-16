@@ -6,7 +6,7 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:09:02 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/12 11:39:57 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/16 13:40:25 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ int	map_checks(t_map *map)
 	t_point	start;
 	t_point	end;
 
+	start.x = 0;
+	start.y = 0;
+	end.x = 0;
+	end.y = 0;
 	if (map_verif(map->tab_map, &map->height, &map->width) == 0
 		|| path_verif(map, start, end) == 0)
 		return (0);

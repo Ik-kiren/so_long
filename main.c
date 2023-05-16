@@ -6,7 +6,7 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:47:51 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/12 12:41:33 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/05/16 13:38:30 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	free_map(t_map *map)
 
 int	format_error(void)
 {
-	ft_printf("format error\n");
+	ft_printf("Error\nWrong map format\n");
 	return (0);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_vars		vars;
 	t_map		map;
@@ -36,13 +36,15 @@ int	main(void)
 	t_img		img;
 	int			fd;
 
+	if (argc != 2)
+		return (0);
 	vars.img_t = &img_t;
 	vars.img = &img;
 	vars.map = &map;
-	fd = open("./map.ber", O_RDONLY);
+	fd = open(argv[1], O_RDONLY);
 	if (!fd)
 		return (0);
-	create_map(fd, &map);
+	create_map(fd, &map, argv[1]);
 	if (!map.tab_map)
 		return (format_error());
 	vars.mlx = mlx_init((map.width + 1) * 32, (map.height + 1) * 32, "s", true);
@@ -53,4 +55,3 @@ int	main(void)
 	mlx_loop(vars.mlx);
 	mlx_terminate(vars.mlx);
 }
-
