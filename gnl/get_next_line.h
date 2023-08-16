@@ -6,7 +6,7 @@
 /*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 12:52:47 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/11 12:14:59 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/08/07 12:33:05 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 
 char	*get_next_line(int fd);
 char	*ft_strjoin_gnl(char *s1, char *s2);
