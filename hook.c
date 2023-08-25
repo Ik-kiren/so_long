@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cdupuis <chris_dupuis@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:48:06 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/05/12 12:25:28 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/08/18 14:21:47 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,9 @@ void	deplacement(mlx_key_data_t keycode, void *param)
 		&& vars->map->tab_map[(vars->p_y - 32) / 32][vars->p_x / 32] != '1')
 		hooks(3, vars);
 	else if (keycode.key == MLX_KEY_ESCAPE)
+	{
 		mlx_close_window(vars->mlx);
+	}
 	collec_drop(vars);
 	won_game(vars);
 }

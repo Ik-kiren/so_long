@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdupuis <cdupuis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cdupuis <chris_dupuis@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 12:47:51 by cdupuis           #+#    #+#             */
-/*   Updated: 2023/08/16 11:54:11 by cdupuis          ###   ########.fr       */
+/*   Updated: 2023/08/18 14:28:12 by cdupuis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_map(t_map *map)
+void	free_map(t_map *map, t_texture *text)
 {
 	int	i;
 
@@ -20,6 +20,21 @@ void	free_map(t_map *map)
 	while (++i <= map->height + 1)
 		free(map->tab_map[i]);
 	free(map->tab_map);
+	if (text != NULL)
+	{
+		free(text->t_collec);
+		free(text->t_corner_l_d);
+		free(text->t_corner_l_u);
+		free(text->t_corner_r_d);
+		free(text->t_corner_r_u);
+		free(text->t_exit);
+		free(text->t_floor);
+		free(text->t_player);
+		free(text->t_wall_d);
+		free(text->t_wall_l);
+		free(text->t_wall_r);
+		free(text->t_wall_u);
+	}
 }
 
 int	format_error(void)
@@ -53,5 +68,6 @@ int	main(int argc, char **argv)
 	map_to_img(&vars, &map);
 	mlx_image_to_window(vars.mlx, img.player, vars.p_x, vars.p_y);
 	mlx_loop(vars.mlx);
+	free_map(&map, &img_t);
 	mlx_terminate(vars.mlx);
 }

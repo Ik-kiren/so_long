@@ -9,11 +9,9 @@ OBJSGNL = $(SRCSGNL:c=o)
 
 all: $(NAME)
 
-linux:
-	$(CC) $(CFlags) $(SRCS) $(OBJSGNL) mlx/build/libmlx42.a  -Iinclude -ldl -lglfw -pthread -lm -o $(NAME)
-
-%.o: %.c
-	$(CC) $(CFlags) $< -c
+linux: $(OBJS) $(OBJSGNL)
+	make -C ft_printf
+	$(CC) $(CFlags) $(OBJS) $(OBJSGNL) mlx/build/libmlx42.a ft_printf/libftprintf.a -Iinclude -ldl -lglfw -pthread -lm -o $(NAME)
 
 $(NAME): $(OBJS)
 	cmake ./mlx -B ./mlx/build
