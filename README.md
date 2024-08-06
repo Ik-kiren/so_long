@@ -1,4 +1,4 @@
-little game made in C with the mlx graphic library (https://github.com/codam-coding-college/MLX42) that can be played by passing a "map" of a certain format as an argument
+little game made in C with the mlx graphic library (https://github.com/codam-coding-college/MLX42) that can be played by passing a "map" of a certain format as an argument.
 
 map exemple :  
 11111111111  
